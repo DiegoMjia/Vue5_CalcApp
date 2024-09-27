@@ -8,15 +8,15 @@
 
 <script>
 export default {
-  name: 'ScreenCalc',
-  props: ['NumberValue', 'ResponseValue'],
-}
+  name: "ScreenCalc",
+  props: ["NumberValue", "ResponseValue"],
+};
 </script>
 
 <style scoped>
 .Screen {
   border: 2px solid #000;
-  width: 560px;
+  width: 100%;
   height: 120px;
   font-size: 50px;
   text-align: end;

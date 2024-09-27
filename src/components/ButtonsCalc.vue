@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="ButtonContainer">
+    <div>
       <div class="ButtonContainer">
         <button type="button" class="btn btn-outline-primary" @click="emitNumber('1')">
           1
@@ -59,6 +59,20 @@ export default {
   grid-template-rows: repeat(4, 90px);
   font-weight: bold;
   gap: 3px;
+}
+
+@media only screen and (max-width: 667px) {
+  .ButtonContainer {
+    width: 80px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    width: 60%;
+  }
+
+  button {
+    font-size: 10px;
+    font-weight: bold;
+  }
 }
 
 button {

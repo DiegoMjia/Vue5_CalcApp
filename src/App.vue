@@ -4,9 +4,12 @@
       <div class="ContainerCalc">
         <div class="ContainerAll">
           <ScreenCalc class="ScreenCalc" :NumberValue="ValueShow"></ScreenCalc>
-          <hr>
+          <hr />
           <div class="ContainerOptions">
-            <ButtonsCalc class="Buttons" @button-click="ShowNumber"></ButtonsCalc>
+            <ButtonsCalc
+              class="Buttons"
+              @button-click="ShowNumber"
+            ></ButtonsCalc>
             <ButtonsOperations @sign-operation="ShowNumber"></ButtonsOperations>
           </div>
         </div>
@@ -16,47 +19,47 @@
 </template>
 
 <script>
-import ScreenCalc from './components/ScreenCalc.vue';
-import ButtonsCalc from './components/ButtonsCalc.vue';
-import ButtonsOperations from './components/ButtonsOperations.vue';
+import ScreenCalc from "./components/ScreenCalc.vue";
+import ButtonsCalc from "./components/ButtonsCalc.vue";
+import ButtonsOperations from "./components/ButtonsOperations.vue";
 
 export default {
-  name: 'App',
-
+  name: "App",
 
   data() {
     return {
       Numbers: [],
-      ValueShow: '',
+      ValueShow: "",
       Ce: false,
-      Operation: '',
-    }
+      Operation: "",
+    };
   },
-
 
   methods: {
     ShowNumber(value) {
-      if (value == 'CE' || value == 'C') {
+      if (value == "CE" || value == "C") {
         this.Numbers = [];
         this.Ce = true;
       }
 
       if (this.Ce) {
-        this.ValueShow = '';
+        this.ValueShow = "";
         this.Ce = false;
       } else {
         this.ValueShow += value.toString();
-        if (value != '=' && value != 'CE' && value != 'C') {
+        if (value != "=" && value != "CE" && value != "C") {
           this.Numbers.push(value);
         }
       }
 
       switch (value) {
-        case '=':
+        case "=":
           {
             try {
-              const expression = this.Numbers.join('');
-              this.ValueShow = new Function('return ' + expression)().toString();
+              const expression = this.Numbers.join("");
+              this.ValueShow = new Function(
+                "return " + expression
+              )().toString();
               this.Numbers = [];
               this.Numbers[0] = this.ValueShow;
             } catch (error) {
@@ -70,7 +73,6 @@ export default {
         default:
           break;
       }
-
     },
   },
 
@@ -78,8 +80,8 @@ export default {
     ScreenCalc,
     ButtonsCalc,
     ButtonsOperations,
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -91,6 +93,23 @@ export default {
   align-content: center;
 }
 
+@media only screen and (max-width: 667px) {
+  .home {
+    width: 90%;
+  }
+
+  .ContainerCalc {
+    max-width: 490px;
+  }
+
+  .ContainerOptions {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: auto;
+  }
+}
+
 .ContainerCalc {
   border: 2px solid #000;
   margin: 20px;
@@ -98,9 +117,14 @@ export default {
   border-radius: 15px;
 }
 
-
 .ContainerOptions {
   display: flex;
+  flex-direction: row;
   gap: 10px;
+}
+
+#app > div {
+  display: flex;
+  justify-content: center;
 }
 </style>
